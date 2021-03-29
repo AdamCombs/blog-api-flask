@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<!--The following is code only used in the creation of this app, to experiment with the use of templates.-->
+{% block head %}
+<title>Endless-Admin</title>
+{% endblock %}
+
+{% block body %}
+
+<div>
+    <h1>Administrator Login</h1>
+    <form method="post">
+        <input type="text" value="Username" name="username" id="username">
+        <input type="password" value="Password" name="password" id="password">
+        <input type="submit" value="Enter">
+    </form>
+</div>
+
+{% endblock %}

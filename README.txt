@@ -1,0 +1,73 @@
+Running the application:
+
+To run this example follow these steps:
+
+1. Activate a virtual environment that contains the packages in 'requirements.txt'
+
+2. Set a FLASK_CONFIG environment variable to development or production with the following line:
+set FLASK_ENV=development
+
+3. Run the app with the following line:
+flask run
+
+The default settings of the app are drawn from an object in the config.py, you can alter
+which settings are used by changing line 39 of __init__.py
+
+
+Objective:
+
+This Python Flask App was created to provide a Backend to an online blog website. It manages and persists blog posts,
+users, and tags with SQLAlchemy.
+
+Each blog Post consists of the following attributes:
+1. Title
+2. Date of Creation
+3. A featured image
+4. Text Content
+5. A list of associated tags.
+
+These are all accepted as key value pairs in the form of JSON. The featured image is received in byte64 format as
+a string. Converted into an image, given a unique name, and saved to the img file. Then it's location is stored
+as a string in the database.
+
+The database 'flaskdatabase.db' can be created by the developer by running the following commands
+within an active virtual environment containing the packages in 'requirements.txt':
+python
+from app.__init__ import create_app
+from app.extensions import db
+db.create_all(app=create_app())
+exit()
+
+An admin login and password is created one time by the developer via commandline with a function
+located on line 69 of __init__.py
+
+The password is salted and hashed using werkzeug library.
+
+A successful login from user installs a authorization JSON Web Token in the browser's cookies.
+This token expires after 15 minutes, but allows the admin user to perform CRUD operations on
+data stored within the database.
+
+
+Application Structure
+
+Within the App folder you'll find the following files:
+
+'models' - Class files for the different databases used with the SQLAlchemy model.
+'static' - The img folder where all of the featured images are stored.
+'templates' - HTML templates that were created to test functionality of the app.
+
+Also the following files:
+
+'__init__.py' - Main 'create_app' function, registers blue prints and different extensions.
+'config.py' - Different config class files, these are settings uploaded depending on the object
+selected in __init__.py line 39
+'extensions.py' - The creation of the SQLAlchemy database and JWTManager.
+'private_views.py' - All the routes that can only be accessed with the JWT Token.
+'public_views.py' - All the routes that can be accessed publicly.
+'flaskdatabase.db' - The database created by SQLAlchemy
+
+Thank you for reading,
+Adam Combs
+Adamcombs1@gmail.com
+
+

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+<!--The following is code only used in the creation of this app, to experiment with the use of templates.-->
+{% block head %}
+<title>Endless-Staircase-Blog</title>
+{% endblock %}
+
+{% block body %}
+
+<div>
+    <h1>Endless Staircase</h1>
+    {% if blog_entries|length < 1 %}
+        <h4>There are no blog_entries. You need to write more!</h4>
+    {% else %}
+        {% for entry in blog_entries %}
+            <h1> {{ entry.title }} </h1>
+            <h4>{{ entry.id }}</h4>
+            <img style="width: 75%;" src="{{ entry.feature_image }}">
+            <p>{{ entry.created_at }}</p>
+            <p style="white-space: pre-wrap; width: 75%;" >{{ entry.content }}</p>
+
+            {% for tag in entry.tags %}
+                <a href="/tag/{{ tag.name }}">{{ tag.name }}</a>
+            {% endfor %}
+            <br>
+            <a href="/delete/{{ entry.id }}">Delete Entry</a>
+            <br>
+            <a href="/update/{{ entry.id }}">Update Entry</a>
+        {% endfor %}
+    {% endif %}
+
+    <br>
+    <br>
+
+    {% if tags|length < 1 %}
+        <p>no tags here</p>
+    {% else %}
+        {% for tag in tags %}
+            <a href="/tag/{{ tag.name }}">{{ tag.name }}</a>
+        {% endfor %}
+    {% endif %}
+
+    <br>
+    <br>
+
+    <a href="/admin">Admin</a>
+
+    <a href="/create_entry">Create Entry</a>
+
+    <a href="/update">Update</a>
+
+</div>
+
+{% endblock %}

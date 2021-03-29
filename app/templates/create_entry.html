@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+<!--The following is code only used in the creation of this app, to experiment with the use of templates.-->
+{% block head %}
+<title>Endless-Staircase-Blog-Create</title>
+{% endblock %}
+
+{% block body %}
+
+<div>
+
+    <h1>Create Entry</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="text" value="Title" name="title">
+        <br>
+        <img src="{{ feature_image }}" alt="">
+        <input type="file" id="myFile" name="feature_image">
+        <br>
+        <textarea rows="40" col="100" name="content"></textarea>
+        <br>
+        <input type="text" value="Tag 1" name="tag1">
+        <input type="text" value="Tag 2" name="tag2">
+        <input type="text" value="Tag 3" name="tag3">
+        <br>
+        <input type="submit" value="Create Entry">
+    </form>
+
+</div>
+
+{% endblock %}
