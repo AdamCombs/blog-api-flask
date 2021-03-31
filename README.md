@@ -5,10 +5,10 @@ To run this example follow these steps:
 1. Activate a virtual environment that contains the packages in 'requirements.txt'
 
 2. Set a FLASK_CONFIG environment variable to development or production with the following line:
-set FLASK_ENV=development
+    + set FLASK_ENV=development
 
 3. Run the app with the following line:
-flask run
+    + flask run
 
 The default settings of the app are drawn from an object in the config.py, you can alter
 which settings are used by changing line 39 of \_\_init__.py
@@ -32,11 +32,12 @@ as a string in the database.
 
 The database 'flaskdatabase.db' can be created by the developer by running the following commands
 within an active virtual environment containing the packages in 'requirements.txt':
-python
-from app.\_\_init__ import create_app
-from app.extensions import db
-db.create_all(app=create_app())
-exit()
+
++ python
++ from app.\_\_init__ import create_app
++ from app.extensions import db
++ db.create_all(app=create_app())
++ exit()
 
 # Security:
 
@@ -51,10 +52,9 @@ CRUD operations on data stored within the database. These protected routes are l
 
 ### Notable settings for production are:
 
-+'JWT Cookie Secure' - If set to True the security cookies will only be sent to a browser via HTTPS connection
++ 'JWT Cookie Secure' - If set to True the security cookies will only be sent to a browser via HTTPS connection
 after a successful login.
-
-+'JWT CSRF Protect' - If set to True a cookie 'csrf_access_token' is set in the browser when a user successfully
++ 'JWT CSRF Protect' - If set to True a cookie 'csrf_access_token' is set in the browser when a user successfully
 logs in, then when accessing protected routes, the csrf token's value must be returned.
 The token is returned as a header with key: 'X-CSRF-TOKEN', and the value as the csrf token's contents.
 
@@ -63,19 +63,19 @@ The token is returned as a header with key: 'X-CSRF-TOKEN', and the value as the
 
 ### Within the App folder you'll find the following files:
 
-+'models' - Class files for the different databases used with the SQLAlchemy model.
-+'static' - The img folder where all of the featured images are stored.
-+'templates' - HTML templates that were created to test functionality of the app.
++ 'models' - Class files for the different databases used with the SQLAlchemy model.
++ 'static' - The img folder where all of the featured images are stored.
++ 'templates' - HTML templates that were created to test functionality of the app.
 
 ### Also the following files:
 
-+'\_\_init__.py' - Main 'create_app' function, registers blue prints and different extensions.
-+'config.py' - Different config class files, these are settings uploaded depending on the object
++ '\_\_init__.py' - Main 'create_app' function, registers blue prints and different extensions.
++ 'config.py' - Different config class files, these are settings uploaded depending on the object
 selected in \_\_init__.py line 39
-+'extensions.py' - The creation of the SQLAlchemy database and JWTManager.
-+'private_views.py' - All the routes that can only be accessed with the JWT Token.
-+'public_views.py' - All the routes that can be accessed publicly.
-+'flaskdatabase.db' - The database created by SQLAlchemy
++ 'extensions.py' - The creation of the SQLAlchemy database and JWTManager.
++ 'private_views.py' - All the routes that can only be accessed with the JWT Token.
++ 'public_views.py' - All the routes that can be accessed publicly.
++ 'flaskdatabase.db' - The database created by SQLAlchemy
 
 ### Thank you for reading,
 ### Adam Combs
