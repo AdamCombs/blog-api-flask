@@ -50,8 +50,10 @@ This token expires after 15 minutes, but allows the admin access to specific rou
 CRUD operations on data stored within the database. These protected routes are located in 'private_views.py'
 
 #### Notable settings for production are:
+
 'JWT Cookie Secure' - If set to True the security cookies will only be sent to a browser via HTTPS connection
 after a successful login.
+
 'JWT CSRF Protect' - If set to True a cookie 'csrf_access_token' is set in the browser when a user successfully
 logs in, then when accessing protected routes, the csrf token's value must be returned.
 The token is returned as a header with key: 'X-CSRF-TOKEN', and the value as the csrf token's contents.
