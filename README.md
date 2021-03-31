@@ -49,10 +49,12 @@ A successful login from user installs a authorization JSON Web Token in the brow
 This token expires after 15 minutes, but allows the admin access to specific routes that perform
 CRUD operations on data stored within the database. These protected routes are located in 'private_views.py'
 
-#### Notable settings for production are:
-'JWT Cookie Secure' - If set to True the security cookies will only be sent to a browser via HTTPS connection
+### Notable settings for production are:
+
++'JWT Cookie Secure' - If set to True the security cookies will only be sent to a browser via HTTPS connection
 after a successful login.
-'JWT CSRF Protect' - If set to True a cookie 'csrf_access_token' is set in the browser when a user successfully
+
++'JWT CSRF Protect' - If set to True a cookie 'csrf_access_token' is set in the browser when a user successfully
 logs in, then when accessing protected routes, the csrf token's value must be returned.
 The token is returned as a header with key: 'X-CSRF-TOKEN', and the value as the csrf token's contents.
 
@@ -61,19 +63,19 @@ The token is returned as a header with key: 'X-CSRF-TOKEN', and the value as the
 
 ### Within the App folder you'll find the following files:
 
-'models' - Class files for the different databases used with the SQLAlchemy model.
-'static' - The img folder where all of the featured images are stored.
-'templates' - HTML templates that were created to test functionality of the app.
++'models' - Class files for the different databases used with the SQLAlchemy model.
++'static' - The img folder where all of the featured images are stored.
++'templates' - HTML templates that were created to test functionality of the app.
 
 ### Also the following files:
 
-'\_\_init__.py' - Main 'create_app' function, registers blue prints and different extensions.
-'config.py' - Different config class files, these are settings uploaded depending on the object
++'\_\_init__.py' - Main 'create_app' function, registers blue prints and different extensions.
++'config.py' - Different config class files, these are settings uploaded depending on the object
 selected in \_\_init__.py line 39
-'extensions.py' - The creation of the SQLAlchemy database and JWTManager.
-'private_views.py' - All the routes that can only be accessed with the JWT Token.
-'public_views.py' - All the routes that can be accessed publicly.
-'flaskdatabase.db' - The database created by SQLAlchemy
++'extensions.py' - The creation of the SQLAlchemy database and JWTManager.
++'private_views.py' - All the routes that can only be accessed with the JWT Token.
++'public_views.py' - All the routes that can be accessed publicly.
++'flaskdatabase.db' - The database created by SQLAlchemy
 
 ### Thank you for reading,
 ### Adam Combs
