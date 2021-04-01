@@ -5,10 +5,10 @@ To run this example follow these steps:
 1. Activate a virtual environment that contains the packages in 'requirements.txt'
 
 2. Set a FLASK_CONFIG environment variable to development or production with the following line:
-set FLASK_ENV=development
+  * set FLASK_ENV=development
 
 3. Run the app with the following line:
-flask run
+  * flask run
 
 The default settings of the app are drawn from an object in the config.py, you can alter
 which settings are used by changing line 39 of \_\_init__.py
@@ -32,11 +32,11 @@ as a string in the database.
 
 The database 'flaskdatabase.db' can be created by the developer by running the following commands
 within an active virtual environment containing the packages in 'requirements.txt':
-python
-from app.\_\_init__ import create_app
-from app.extensions import db
-db.create_all(app=create_app())
-exit()
++ python
++ from app.\_\_init__ import create_app
++ from app.extensions import db
++ db.create_all(app=create_app())
++ exit()
 
 # Security:
 
