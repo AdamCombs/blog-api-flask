@@ -39,6 +39,18 @@ within an active virtual environment containing the packages in 'requirements.tx
 + db.create_all(app=create_app())
 + exit()
 
+##Public Routes:
++ /single_blog/(post id as integer) - GET single blog in JSON format by its id attribute.
++ /all_blogs - GET all blog posts and associated tags in JSON format.
++ /tag/(tag as string) - GET all blog posts in JSON format with corresponding tag.
++ /admin - POST method accepts username and password in the form of JSON
+
+##Private Routes:
+The following can be accessed only after a successful log in via the '/admin' route.
++ /delete_entry/(post id as integer) - DELETE method removed post with corresponding id attribute.
++ /create_entry - POST method that creates a new post from JSON.
++ /update_entry/(post id as integer) - GET blog in JSON format by its id attribute. POST that updates blog from received JSON. 
+
 # Security:
 
 An admin login and password is created one time by the developer via commandline with a function
