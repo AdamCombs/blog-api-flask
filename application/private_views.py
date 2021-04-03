@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
-from app.models.blog_table import Blog
-from app.models.tag_table import Tag
+from application.models.blog_table import Blog
+from application.models.tag_table import Tag
 from .extensions import db
 import os
 import base64
@@ -18,10 +18,10 @@ def delete_entry(id):
         blog_id = getattr(entry_to_delete, "id")
 
         # Finds and deletes image file from img static folder.
-        for filename in os.listdir('app/static/img/'):
+        for filename in os.listdir('application/static/img/'):
             if filename == os.path.basename(entry_to_delete.feature_image):
                 name = os.path.basename(filename)
-                path = os.path.join('app/static/img/', name)
+                path = os.path.join('application/static/img/', name)
                 os.remove(path)
 
         # Deletes entry from database.
@@ -43,9 +43,9 @@ def create_entry():
         image_decoded = base64.b64decode(new_blog['feature_image'])
         unique_filename = uuid.uuid4().hex + '.jpg'
 
-        # The following creates a writeable image file that accepts bytes in the static folder of the app
+        # The following creates a writeable image file that accepts bytes in the static folder of the application
         # Then writes our decoded image to the file
-        upload_loc = 'app/static/img/'
+        upload_loc = 'application/static/img/'
         image = open(os.path.join(upload_loc, unique_filename), 'wb')
         image.write(image_decoded)
         image.close()
@@ -107,10 +107,10 @@ def update_entry(id):
         entry_to_update.content = updated_info['content']
 
         # Finds and deletes current image file from img static folder.
-        for filename in os.listdir('app/static/img/'):
+        for filename in os.listdir('application/static/img/'):
             if filename == os.path.basename(entry_to_update.feature_image):
                 name = os.path.basename(filename)
-                path = os.path.join('app/static/img/', name)
+                path = os.path.join('application/static/img/', name)
                 os.remove(path)
 
         # The value of the JSON key 'feature_image' is an image formatted to base64
@@ -118,9 +118,9 @@ def update_entry(id):
         image_decoded = base64.b64decode(updated_info['feature_image'])
         unique_filename = uuid.uuid4().hex + '.jpg'
 
-        # The following creates a writeable image file that accepts bytes in the static folder of the app
+        # The following creates a writeable image file that accepts bytes in the static folder of the application
         # Then writes our decoded image to the file
-        upload_loc = 'app/static/img/'
+        upload_loc = 'application/static/img/'
         image = open(os.path.join(upload_loc, unique_filename), 'wb')
         image.write(image_decoded)
         image.close()
@@ -155,11 +155,11 @@ def update_entry(id):
     else:
         return jsonify({"Failure": "Incorrect method."})
 
-# The following is code only used in the creation of this app, to experiment with the use of templates.
+# The following is code only used in the creation of this application, to experiment with the use of templates.
 
-# from flask import current_app as app
+# from flask import current_app as application
 # from flask import render_template, redirect
-# from app.models.user_table import User
+# from application.models.user_table import User
 
 # @private_views.route('/create_entry', methods=['POST', 'GET'])
 # @jwt_required()
@@ -169,7 +169,7 @@ def update_entry(id):
 #         # Also, saves the img name with the associated Blog entry.
 #         image = request.files['feature_image']
 #         image_filename = secure_filename(image.filename)
-#         upload_loc = 'app/static/img/'
+#         upload_loc = 'application/static/img/'
 #         for_image_display = '/static/img'
 #         image.save(os.path.join(upload_loc, image_filename))
 #         file_path = os.path.join(for_image_display, image_filename)

@@ -1,12 +1,10 @@
 from flask import Blueprint, request, redirect, make_response, jsonify
-
-
 from flask_jwt_extended import create_access_token, set_access_cookies
 from werkzeug.security import check_password_hash
-from app.models.user_table import User
-from app.models.blog_table import Blog
-from app.models.tag_table import Tag
-from app.models.tag_blog_relationship_table import tag_blog
+from application.models.user_table import User
+from application.models.blog_table import Blog
+from application.models.tag_table import Tag
+from application.models.tag_blog_relationship_table import tag_blog
 from .extensions import db
 
 public_views = Blueprint("public_views", __name__)
@@ -113,7 +111,7 @@ def login():
     else:
         return 'Method not Post', 400
 
-# The following is code only used in the creation of this app, to experiment with the use of templates.
+# The following is code only used in the creation of this application, to experiment with the use of templates.
 
 from flask import current_app as app
 from flask import render_template, redirect, make_response
@@ -163,7 +161,7 @@ def index():
 
 # @public_views.route('/create_user', methods=['POST'])
 # def create_genesis():
-#     from app.extensions import db
+#     from application.extensions import db
 #     if request.method == 'POST':
 #         username1 = request.form['username1']
 #         password1 = request.form['password1']
