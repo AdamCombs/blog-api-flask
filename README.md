@@ -41,7 +41,7 @@ within an active virtual environment containing the packages in 'requirements.tx
 
 ## Public Routes:
 + /single_blog/(post id as integer) - GET single blog in JSON format by its id attribute.
-+ /all_blogs - GET all blog posts and associated tags in JSON format.
++ /all_blog_entries - GET all blog posts and associated tags in JSON format.
 + /tag/(tag as string) - GET all blog posts in JSON format with corresponding tag.
 + /admin - POST method accepts username and password in the form of JSON
 
