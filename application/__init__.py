@@ -31,7 +31,6 @@ from application.config import *
 # The requirements document is created and can automatically be updated via the following command with venv active
 # pip freeze > requirements.txt
 
-
 def create_app():
     app = Flask(__name__)
 
@@ -79,3 +78,5 @@ def create_first_user(app):
 
     app.cli.add_command(create_admin)
     return None
+
+app = create_app()
