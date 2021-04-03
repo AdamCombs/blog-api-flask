@@ -4,28 +4,28 @@ from .extensions import db
 import click
 from flask.cli import with_appcontext
 from werkzeug.security import generate_password_hash
-from app.models.user_table import User
-from app.models.blog_table import Blog
-from app.models.tag_table import Tag
-from app.models.tag_blog_relationship_table import *
-from app.config import *
+from application.models.user_table import User
+from application.models.blog_table import Blog
+from application.models.tag_table import Tag
+from application.models.tag_blog_relationship_table import *
+from application.config import *
 
 # The following commands for running Flask with Debug mode ON
 # In terminal with venv activated enter: (with NO spaces around the '=' signs)
 # set FLASK_ENV=development
-# The following debug variable is set automatically in the 'load app config from object section'
+# The following debug variable is set automatically in the 'load application config from object section'
 # set FLASK_DEBUG=1
 
 # Then you can run with the following command
 # flask run
 
 # From venv in terminal the following commands for creating the SQLAlchemy databases
-# Note: the database models must be imported into the app.__init__.py file
+# Note: the database models must be imported into the application.__init__.py file
 # In terminal enter:
 # python
-# from app.__init__ import create_app
-# from app.extensions import db
-# db.create_all(app=create_app())
+# from application.__init__ import create_app
+# from application.extensions import db
+# db.create_all(application=create_app())
 # exit()
 
 # The requirements document is created and can automatically be updated via the following command with venv active
@@ -37,8 +37,8 @@ def create_app():
 
     # Chooses set of environment variables based on object located within config file
     app.config.from_object(config.DevelopmentConfig)
-    # app.config.from_object(config.ProductionConfig)
-    # app.config.from_object(config.TestingConfig)
+    # application.config.from_object(config.ProductionConfig)
+    # application.config.from_object(config.TestingConfig)
 
     # Register methods to prevent circular dependencies
     # Everything must take place in it's proper order
@@ -52,13 +52,13 @@ def create_app():
     return app
 
 def register_extensions(app):
-    # Registers the extensions with the current app
+    # Registers the extensions with the current application
     jwt.init_app(app)
     db.init_app(app)
     return None
 
 def register_blueprints(app):
-    # Registers the blueprints with the current app
+    # Registers the blueprints with the current application
     from . import public_views
     app.register_blueprint(public_views.public_views)
 
