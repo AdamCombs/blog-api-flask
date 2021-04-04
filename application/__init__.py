@@ -78,5 +78,3 @@ def create_first_user(app):
 
     app.cli.add_command(create_admin)
     return None
-
-app = create_app()
