@@ -1,6 +1,7 @@
 from flask import Flask
 from .extensions import jwt
 from .extensions import db
+from .extensions import cors
 import click
 from flask.cli import with_appcontext
 from werkzeug.security import generate_password_hash
@@ -54,6 +55,7 @@ def register_extensions(app):
     # Registers the extensions with the current application
     jwt.init_app(app)
     db.init_app(app)
+    cors.init_app(app)
     return None
 
 def register_blueprints(app):
