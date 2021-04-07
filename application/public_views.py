@@ -25,7 +25,7 @@ def get_single_blog(id):
     for tag in blog.tags:
         serialized_blog["tags"].append(tag.serialize)
 
-    return jsonify({"single_blog": serialized_blog})
+    return jsonify(serialized_blog)
 
 @public_views.route('/all_blog_entries', methods=['GET'])
 def get_all_blog_entries():
@@ -48,7 +48,7 @@ def get_all_blog_entries():
             serialized_data[i]['tags'].append(tag.serialize)
         i += 1
 
-    return jsonify({"all_blogs": serialized_data})
+    return jsonify(serialized_data)
 
 @public_views.route("/tag/<string:tag>", methods=['GET'])
 def get_entries_with_tag(tag):
@@ -81,7 +81,7 @@ def get_entries_with_tag(tag):
             serialized_data[i]['tags'].append(tag.serialize)
         i += 1
 
-    return jsonify({"all_blogs_with_tag": serialized_data})
+    return jsonify(serialized_data)
 
 
 @public_views.route('/admin', methods=['POST'])
