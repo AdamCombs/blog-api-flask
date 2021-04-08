@@ -25,7 +25,7 @@ def get_single_blog(id):
     for tag in blog.tags:
         serialized_blog["tags"].append(tag.serialize)
 
-    return jsonify({"single_blog": serialized_blog})
+    return jsonify(serialized_blog)
 
 @public_views.route('/all_blog_entries', methods=['GET'])
 def get_all_blog_entries():
@@ -48,7 +48,7 @@ def get_all_blog_entries():
             serialized_data[i]['tags'].append(tag.serialize)
         i += 1
 
-    return jsonify({"all_blogs": serialized_data})
+    return jsonify(serialized_data)
 
 @public_views.route("/tag/<string:tag>", methods=['GET'])
 def get_entries_with_tag(tag):
@@ -57,6 +57,7 @@ def get_entries_with_tag(tag):
     tag_id = 0
     blog_id = []
     serialized_data = []
+
     for item in Tag.query.filter_by(name=tag).order_by(Tag.id).all():
         tag_id = item.id
     # Then the blog ids for the entries containing that tag are added to a list
@@ -81,7 +82,21 @@ def get_entries_with_tag(tag):
             serialized_data[i]['tags'].append(tag.serialize)
         i += 1
 
-    return jsonify({"all_blogs_with_tag": serialized_data})
+    return jsonify(serialized_data)
+
+@public_views.route("/all_tags", methods=['GET'])
+def get_all_tags():
+    # Getting all tags
+    all_tags = Tag.query.order_by(Tag.id).all()
+    serialized_data = []
+
+    # Adding only the tags with an existing blog entry to data being returned.
+    for blog in Blog.query.order_by(Blog.created_at).all():
+        for tag in all_tags:
+            if tag in blog.tags:
+                serialized_data.append(tag.serialize)
+
+    return jsonify(serialized_data)
 
 
 @public_views.route('/admin', methods=['POST'])
