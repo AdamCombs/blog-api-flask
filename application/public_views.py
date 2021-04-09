@@ -15,7 +15,7 @@ def get_single_blog(id):
     blog = Blog.query.filter_by(id=id).first_or_404()
 
     # The blog record is serialized, to include its relevant info.
-    serialized_blog = blog.serialize
+    serialized_blog = (blog.serialize)
 
     # A tags field is added to the post in the form of a list.
     # This list will hold the tag information for the sake of display.
@@ -25,7 +25,12 @@ def get_single_blog(id):
     for tag in blog.tags:
         serialized_blog["tags"].append(tag.serialize)
 
-    return jsonify(serialized_blog)
+    # The serialized blog is added to a list for the sake of matching all the other response formats.
+    # To include [] brackets.
+    serialized_data = []
+    serialized_data.append(serialized_blog)
+
+    return jsonify(serialized_data)
 
 @public_views.route('/all_blog_entries', methods=['GET'])
 def get_all_blog_entries():
@@ -89,12 +94,20 @@ def get_all_tags():
     # Getting all tags
     all_tags = Tag.query.order_by(Tag.id).all()
     serialized_data = []
+    all_relevant_tags = []
 
     # Adding only the tags with an existing blog entry to data being returned.
+    # Also ignoring duplicate Tags
     for blog in Blog.query.order_by(Blog.created_at).all():
         for tag in all_tags:
             if tag in blog.tags:
-                serialized_data.append(tag.serialize)
+                if tag in all_relevant_tags:
+                    pass
+                else:
+                    all_relevant_tags.append(tag)
+
+    for tag in all_relevant_tags:
+        serialized_data.append(tag.serialize)
 
     return jsonify(serialized_data)
 
