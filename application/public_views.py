@@ -125,7 +125,7 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 response_object = {
-                    'status': 'success',
+                    'login': 'true',
                     'message': 'You have successfully logged in.'
                 }
                 json_object = jsonify(response_object)
@@ -133,11 +133,11 @@ def login():
                 set_access_cookies(json_object, access_token)
                 return json_object
             else:
-                return "Invalid password", 400
+                return jsonify({'login': 'false', 'message': 'Invalid password.'})
         else:
-            return 'Invalid username', 400
+            return jsonify({'login': 'false', 'message': 'Invalid username.'})
     else:
-        return 'Method not Post', 400
+        return jsonify({'login': 'false', 'message': 'Method not POST.'})
 
 # The following is code only used in the creation of this application, to experiment with the use of templates.
 
